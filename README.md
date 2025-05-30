@@ -14,6 +14,13 @@ This project simulates memory allocation strategies—First Fit, Best Fit, Worst
 
 ---
 
+## Tools Used:
+- Python
+- matplotlib
+- networkx
+
+---
+
 ## Installation
 
 Ensure Python is installed on your machine. Install required libraries using pip:
@@ -47,6 +54,8 @@ The Banker's Algorithm checks for a safe sequence of process execution without c
 
 ![Banker's Algorithm Gantt Chart](banker_algo.png)
 
+The algorithm ensures each process only runs when it has enough resources to complete, preventing deadlock situations. The diagonal pattern indicates sequential execution, where resources are released after each process completes.
+
 ---
 
 ## Memory Allocation Algorithms
@@ -72,6 +81,8 @@ def first_fit(blocks, procs):
 The First Fit strategy allocates the first memory block that is large enough for the process. It is straightforward and fast but can lead to memory fragmentation.
 
 ![First Fit RAG](first_fit.png)
+
+This Resource Allocation Graph illustrates how resources (R0-R3, shown in green) are distributed among processes (P0-P5, shown in blue) using the First Fit memory allocation strategy. The red arrows indicate resources that are currently allocated to processes (like R0 to P0 and P1), while blue arrows show pending resource requests from processes (such as P3 and P5 requesting R2). The graph reveals potential resource conflicts and helps identify possible deadlock situations, with R3 being the only completely unused resource while other resources are either allocated or have pending requests.
 
 ---
 
@@ -101,6 +112,8 @@ The Worst Fit strategy allocates the process to the largest available memory blo
 
 ![Worst Fit RAG](worst_fit.png)
 
+This Resource Allocation Graph demonstrates the Worst Fit memory allocation strategy, where resources (R0-R3 in green) are connected to processes (P0-P5 in blue) through allocation and request relationships. The red arrows show current resource allocations (like R2 to P5 and R1 to P1), while blue arrows indicate pending resource requests (such as P3 and P2 requesting R2, and P4 requesting R1), creating a more complex web of resource dependencies. The graph reveals potential inefficiencies of the Worst Fit strategy, as shown by the clustering of requests around certain resources (particularly R2 and R1) while R0 and R3 appear less utilized, which is characteristic of this allocation method's tendency to create uneven resource distribution.
+
 ---
 
 ### Best Fit Strategy
@@ -129,18 +142,24 @@ The Best Fit strategy finds the memory block that leaves the smallest leftover s
 
 ![Best Fit RAG](best_fit.png)
 
+This Resource Allocation Graph depicts the Best Fit memory allocation strategy, showing the interaction between processes (P0-P5 in blue circles) and resources (R0-R3 in green squares). The red arrows indicate current resource allocations (R0 to P0 and P1, R2 to P2), while blue arrows show pending resource requests (P3, P4, and P5 requesting R1 and R2), demonstrating how the Best Fit strategy attempts to minimize memory wastage by matching process needs to the most suitable resources. The graph's structure reveals a more balanced distribution of resources compared to other strategies, with R3 connected to R0 and multiple processes making strategic requests to R1 and R2, reflecting the Best Fit's characteristic of optimizing resource utilization.
+
 ---
 
-## Performance of the Strategies
+## Performance Analysis
 
 This section compares the three strategies based on fragmentation and execution time.
 
 ![Fragmentation and Execution Time Comparison](performance.png)
 
+Based on the graphs comparing the First Fit, Best Fit, and Worst Fit memory allocation strategies, Best Fit demonstrates the lowest fragmentation (approximately 10 units), followed by First Fit with moderate fragmentation (around 15 units), and Worst Fit with the highest fragmentation (about 30 units). All three strategies exhibit similar execution times (close to 0 seconds), indicating that performance is not significantly affected by the choice of strategy in this implementation. Overall, the Best Fit strategy emerges as the best-performing option.
+
 ---
 
 ## Notes
 
+- This project effectively demonstrates the trade-offs between different memory allocation strategies.
 - All graphs and charts are generated using `matplotlib` and `networkx`.
 - Each memory allocation strategy also visualizes a Resource Allocation Graph (RAG) to illustrate allocation and request states.
 - The safe sequence Gantt chart visually explains the outcome of the Banker's Algorithm.
+- Visualization is a powerful method for understanding how system-level processes and memory management operate.
